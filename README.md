@@ -50,6 +50,7 @@ This Api contains sample request from API.
       "remainCount": 9998,
       "percentage": 82.299900
     }
+    
     > A succesfull face detect operation will result in a HTTP 200 status code
     
     
@@ -60,25 +61,29 @@ This Api contains sample request from API.
     Content-Type: application/json; charset=utf-8
     Vary: Accept, Cookie, Origin
     Allow: OPTIONS, POST
-    #### Invalid Licence Key
+    
+    ### Invalid Licence Key
     {
       "status": 404,
       "message": "Invalid Licience Key",
       "result": false
     }
-    #### Invalid Licence Platform. if Provided other than 'Web'
+    
+    ### Invalid Licence Platform. if Provided other than 'Web'
     {
       "status": 404,
       "message": "Invalid Platform",
       "result": false
      }
-     #### Not Active Licence.
+     
+     ### Not Active Licence.
      {
        "Message" = "No Active Licience Found",
        "Status" = 404,
        "Result" = false,
      }
-     #### Server Error
+     
+     ### Server Error
       {
        "Message" = "Internal Server Error",
        "Status" = 500,
