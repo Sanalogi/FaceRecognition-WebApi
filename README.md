@@ -6,52 +6,86 @@ This technology uses a trained dataset and algorithms.
 
 Photos need to be clear for a better detection.
 
->We will share API with you 
+>API : https://login.nfcread.com/api/NFC/faceMatching 
 
 # REST API for Match Percentage
 
 This Api contains sample request from API.
- - Posts two(2) parameters with names 'firstEncodedbase64' and 'secondEncodedbase64', in base64 format
+ - Posts two(2) parameters with names 'firstBase64' and 'secondBase64', in base64 format
  - Returns match percentage like "82.8"
 
 ## Post List of Things
 
 ### Request
 
-`POST /api address/`
+`POST https://login.nfcread.com/api/NFC/faceMatching`
 
-    curl --location --request POST api address
-         --data-raw '{
-            "firstEncodedbase64":"base64",
-            "secondEncodedbase64":"base64"
-          }'
+### Exmaple JSON 
+    {
+     "firstBase64" : "9j/4AAQSkZJRgABAQAAAQABAAD .....",
+     "secondBase64" : "/9j/4AAQSkZJRgABAQAAAQABA .....",
+     "licenceKey":"API_KEY",
+     "liciencePlatform" : "Web",
+     "option" : ""
+    }
+    firstBase64 : First Picture,
+    secondBase64 : Second Picture,
+    licenceKey : Need to take it from web site to use API,
+    liciencePlatform : It has to be 'Web', means that you are using Web API,
+    option : String message you will choose as a option.
 
 ### Successful Detection and Matching Response
 
-    Date: Mon, 06 Jul 2020 12:49:59 GMT
-    Server: WSGIServer/0.2 CPython/3.8.3
-    Content-Type: application/json
+    Date: Mon, 12 Oct 2020 14:21:01 GMT
+    Server: cloudflare
+    Content-Type: application/json; charset=utf-8
     Vary: Accept, Cookie, Origin
     Allow: OPTIONS, POST
-    X-Frame-Options: SAMEORIGIN
-    Content-Length: 22
-    
-    {"percentage": "82.8"}
+
+    {
+      "message": "Success",
+      "status": 200,
+      "result": true,
+      "date": "2020-10-12T17:21:01.24178+03:00",
+      "remainCount": 9998,
+      "percentage": 82.299900
+    }
     > A succesfull face detect operation will result in a HTTP 200 status code
     
     
-### Error Response
+### Error Responses
 
-    Date: Mon, 06 Jul 2020 12:49:59 GMT
-    Server: WSGIServer/0.2 CPython/3.8.3
-    Content-Type: application/json
+    Date: Mon, 12 Oct 2020 14:21:01 GMT
+    Server: cloudflare
+    Content-Type: application/json; charset=utf-8
     Vary: Accept, Cookie, Origin
     Allow: OPTIONS, POST
-    X-Frame-Options: SAMEORIGIN
-    Content-Length: 22
+    #### Invalid Licence Key
+    {
+      "status": 404,
+      "message": "Invalid Licience Key",
+      "result": false
+    }
+    #### Invalid Licence Platform. if Provided other than 'Web'
+    {
+      "status": 404,
+      "message": "Invalid Platform",
+      "result": false
+     }
+     #### Not Active Licence.
+     {
+       "Message" = "No Active Licience Found",
+       "Status" = 404,
+       "Result" = false,
+     }
+     #### Server Error
+      {
+       "Message" = "Internal Server Error",
+       "Status" = 500,
+       "Result" = false,
+      }
     
-    {"error": "Cannot detect faces"}
-    > A unsuccessful face detect operation will result in a HTTP 200 status code
+    > A unsuccessful face detect operation will result in a HTTP 400 status code
     
  ### Sample Result Image From App
 
