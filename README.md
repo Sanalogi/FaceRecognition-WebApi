@@ -62,28 +62,28 @@ This Api contains sample request from API.
     Vary: Accept, Cookie, Origin
     Allow: OPTIONS, POST
     
-    ### Invalid Licence Key
+     Invalid Licence Key : 
     {
       "status": 404,
       "message": "Invalid Licience Key",
       "result": false
     }
     
-    ### Invalid Licence Platform. if Provided other than 'Web'
+     Invalid Licence Platform. if Provided other than 'Web' : 
     {
       "status": 404,
       "message": "Invalid Platform",
       "result": false
      }
      
-     ### Not Active Licence.
+      Not Active Licence :
      {
        "Message" = "No Active Licience Found",
        "Status" = 404,
        "Result" = false,
      }
      
-     ### Server Error
+      Server Error :
       {
        "Message" = "Internal Server Error",
        "Status" = 500,
